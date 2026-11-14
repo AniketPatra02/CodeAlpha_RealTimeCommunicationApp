@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="bg-devdeep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="60" fill="url(#bg-devdeep)"/>
+  <!-- Body/Clothes -->
+  <path d="M24 120 C24 94 42 85 60 85 C78 85 96 94 96 120 Z" fill="#3b82f6"/>
+  <!-- Neck & Face -->
+  <rect x="52" y="70" width="16" height="20" rx="8" fill="#fbd38d"/>
+  <ellipse cx="60" cy="54" rx="23" ry="25" fill="#fde68a"/>
+  <!-- Hair: side part stylish -->
+  <path d="M36 46 C36 28 50 20 62 20 C76 20 84 28 84 48 C78 32 64 26 50 30 C42 34 38 40 36 46 Z" fill="#172554"/>
+  <!-- Eyes -->
+  <circle cx="50" cy="52" r="3" fill="#0f172a"/>
+  <circle cx="70" cy="52" r="3" fill="#0f172a"/>
+  <!-- Eyebrows -->
+  <line x1="46" y1="46" x2="54" y2="46" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+  <line x1="66" y1="46" x2="74" y2="46" stroke="#0f172a" stroke-width="2" stroke-linecap="round"/>
+  <!-- Smile -->
+  <path d="M53 65 Q60 70 67 65" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round"/>
+</svg>

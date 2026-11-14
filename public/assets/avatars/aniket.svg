@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="bg-aniket" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="60" fill="url(#bg-aniket)"/>
+  <!-- Body/Clothes -->
+  <path d="M25 120 C25 92 42 85 60 85 C78 85 95 92 95 120 Z" fill="#1e293b"/>
+  <path d="M48 85 L60 98 L72 85 Z" fill="#e2e8f0"/>
+  <!-- Head & Neck -->
+  <rect x="52" y="70" width="16" height="20" rx="8" fill="#fbd38d"/>
+  <ellipse cx="60" cy="54" rx="24" ry="26" fill="#fed7aa"/>
+  <!-- Hair -->
+  <path d="M36 48 C36 28 50 22 60 22 C72 22 84 28 84 46 C84 50 82 40 76 34 C70 30 52 30 44 38 C40 42 38 48 36 48 Z" fill="#1e1b4b"/>
+  <!-- Eyes & Glasses -->
+  <rect x="42" y="46" width="14" height="10" rx="3" fill="none" stroke="#0f172a" stroke-width="2.5"/>
+  <rect x="64" y="46" width="14" height="10" rx="3" fill="none" stroke="#0f172a" stroke-width="2.5"/>
+  <line x1="56" y1="51" x2="64" y2="51" stroke="#0f172a" stroke-width="2.5"/>
+  <circle cx="49" cy="51" r="2" fill="#0f172a"/>
+  <circle cx="71" cy="51" r="2" fill="#0f172a"/>
+  <!-- Smile -->
+  <path d="M53 65 Q60 70 67 65" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -249,7 +249,7 @@ if (useExpress) {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       passwordHash: hashPassword(password),
-      avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200'
+      avatarUrl: 'assets/avatars/aniket.svg'
     };
 
     db.users.push(newUser);
@@ -436,3 +436,4 @@ if (useExpress) {
     console.log(`=================================================`);
   });
 }
+

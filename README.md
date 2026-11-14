@@ -36,7 +36,7 @@ PulseMeet delivers an enterprise-grade conferencing room experience featuring pe
 - **Secure Meeting Codes:** Cryptographically unique meeting identifiers (e.g. `meet-482-194`).
 
 ### 🤖 6. Solo Evaluator Simulation Mode
-- Built-in **"Demo Peer"** button allows recruiters, grading mentors, and developers testing on a single computer to simulate a second remote participant (Priya Patel) streaming video, chatting, and drawing on the whiteboard!
+- Built-in **"Demo Peer"** button allows recruiters, grading mentors, and developers testing on a single computer to simulate a second remote participant (Ananya Patra) streaming a 2D vector feed, chatting, and drawing on the whiteboard!
 
 ---
 
@@ -102,7 +102,8 @@ CodeAlpha_RealTimeCommunicationApp/
 
 ## 🔑 Demo Account Credentials
 
-- **Email:** `intern@codealpha.com`
+- **Name:** `Aniket Patra`
+- **Email:** `aniket@codealpha.com`
 - **Password:** `password123`
 *(Or join immediately as a guest by entering any display name)*
 
@@ -130,3 +131,4 @@ Quick Join Demo Rooms available directly on the landing page:
 - **Intern:** Full Stack Development Intern
 - **Internship Program:** [CodeAlpha](https://www.codealpha.tech/)
 - **Submission:** Task 4 - Real-Time Communication App
+

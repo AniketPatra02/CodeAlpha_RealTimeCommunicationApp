@@ -1,32 +1,60 @@
 {
   "users": [
     {
-      "id": "usr_aarav",
-      "name": "Aarav Sharma",
-      "email": "intern@codealpha.com",
+      "id": "usr_aniket",
+      "name": "Aniket Patra",
+      "email": "aniket@codealpha.com",
       "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
-      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80"
+      "avatarUrl": "assets/avatars/aniket.svg"
     },
     {
-      "id": "usr_priya",
-      "name": "Priya Patel",
-      "email": "priya@example.com",
+      "id": "usr_ananya",
+      "name": "Ananya Patra",
+      "email": "ananya@example.com",
       "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
-      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80"
+      "avatarUrl": "assets/avatars/ananya.svg"
+    },
+    {
+      "id": "usr_santanu",
+      "name": "Santanu Maji",
+      "email": "santanu@example.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatarUrl": "assets/avatars/santanu.svg"
+    },
+    {
+      "id": "usr_devdeep",
+      "name": "Devdeep Maity",
+      "email": "devdeep@example.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatarUrl": "assets/avatars/devdeep.svg"
+    },
+    {
+      "id": "usr_tapti",
+      "name": "Tapti Mondal",
+      "email": "tapti@example.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatarUrl": "assets/avatars/tapti.svg"
+    },
+    {
+      "id": "usr_madhumita",
+      "name": "Madhumita Rana",
+      "email": "madhumita@example.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatarUrl": "assets/avatars/madhumita.svg"
     }
   ],
   "rooms": [
     {
       "id": "codealpha-sprint",
       "title": "CodeAlpha Daily Standup & Code Review",
-      "hostId": "usr_aarav",
+      "hostId": "usr_aniket",
       "createdAt": "2026-11-14T09:00:00.000Z",
       "encryption": "DTLS-SRTP AES-128"
     },
     {
       "id": "demo-room-88",
-      "title": "Architecture & Whiteboard Session",
-      "hostId": "usr_priya",
+      "title": "2D Architecture & Whiteboard Session",
+      "hostId": "usr_ananya",
       "createdAt": "2026-11-14T11:30:00.000Z",
       "encryption": "DTLS-SRTP AES-128"
     }

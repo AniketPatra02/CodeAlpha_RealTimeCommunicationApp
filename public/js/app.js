@@ -7,7 +7,7 @@ const state = {
   currentUser: JSON.parse(localStorage.getItem('meet_user') || 'null'),
   token: localStorage.getItem('meet_token') || null,
   myPeerId: 'peer_' + Math.random().toString(36).substring(2, 9),
-  myDisplayName: 'Aarav Sharma',
+  myDisplayName: 'Aniket Patra',
   roomCode: null,
   localStream: null,
   screenStream: null,
@@ -32,11 +32,12 @@ const state = {
 // Default user
 if (!state.currentUser) {
   state.currentUser = {
-    id: "usr_aarav",
-    name: "Aarav Sharma",
-    email: "intern@codealpha.com"
+    id: "usr_aniket",
+    name: "Aniket Patra",
+    email: "aniket@codealpha.com",
+    avatarUrl: "assets/avatars/aniket.svg"
   };
-  state.token = btoa(JSON.stringify({ id: "usr_aarav", name: "Aarav Sharma", email: "intern@codealpha.com" }));
+  state.token = btoa(JSON.stringify({ id: "usr_aniket", name: "Aniket Patra", email: "aniket@codealpha.com" }));
   localStorage.setItem('meet_user', JSON.stringify(state.currentUser));
 }
 
@@ -682,21 +683,21 @@ function appendSharedFile(file) {
 // --- Solo Evaluator Test Helper: Simulated Peer ---
 function simulateDemoPeer() {
   const peerId = 'simulated_peer_' + Math.floor(Math.random() * 1000);
-  const peerName = 'Priya Patel (Demo Peer)';
+  const peerName = 'Ananya Patra (Demo Peer)';
   state.peers.set(peerId, { name: peerName });
   updateParticipantsUI();
 
-  // Create mock canvas video stream for Priya
+  // Create mock canvas 2D video stream for Ananya
   const canvas = document.createElement('canvas');
   canvas.width = 640;
   canvas.height = 360;
   const ctx = canvas.getContext('2d');
 
-  function renderPriya() {
-    ctx.fillStyle = '#312e81';
+  function renderAnanya() {
+    ctx.fillStyle = '#064e3b';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#a855f7';
+    ctx.fillStyle = '#10b981';
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, 60, 0, Math.PI * 2);
     ctx.fill();
@@ -705,37 +706,37 @@ function simulateDemoPeer() {
     ctx.font = 'bold 36px sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('P', canvas.width / 2, canvas.height / 2);
+    ctx.fillText('A', canvas.width / 2, canvas.height / 2);
 
     ctx.font = 'bold 18px sans-serif';
-    ctx.fillText('Priya Patel (WebRTC Peer)', canvas.width / 2, canvas.height / 2 + 90);
-    requestAnimationFrame(renderPriya);
+    ctx.fillText('Ananya Patra (WebRTC Peer)', canvas.width / 2, canvas.height / 2 + 90);
+    requestAnimationFrame(renderAnanya);
   }
-  renderPriya();
+  renderAnanya();
 
   const stream = canvas.captureStream(30);
   addRemoteVideoTile(peerId, peerName, stream);
 
   // Send greeting in chat
   setTimeout(() => {
-    appendChatMessage('Priya Patel', 'Hi Aarav! Video stream and audio connection verified over WebRTC DTLS-SRTP 🔒.');
+    appendChatMessage('Ananya Patra', 'Hi Aniket! Video stream and audio connection verified over WebRTC DTLS-SRTP 🔒.');
     if (els.sidebarDrawer.style.display === 'none') {
       els.chatUnreadDot.style.display = 'block';
     }
   }, 1000);
 
-  // Priya draws a smile on the whiteboard
+  // Ananya draws on the whiteboard
   setTimeout(() => {
     els.whiteboardWrapper.style.display = 'flex';
     const canvasEl = els.whiteboardCanvas;
     const cx = canvasEl.width / 2;
     const cy = canvasEl.height / 2;
-    drawRemoteWhiteboardStroke({ x0: cx - 40, y0: cy - 20, x1: cx - 40, y1: cy - 10, color: '#2563eb', size: 6 });
-    drawRemoteWhiteboardStroke({ x0: cx + 40, y0: cy - 20, x1: cx + 40, y1: cy - 10, color: '#2563eb', size: 6 });
-    drawRemoteWhiteboardStroke({ x0: cx - 40, y0: cy + 20, x1: cx + 40, y1: cy + 20, color: '#ef4444', size: 6 });
+    drawRemoteWhiteboardStroke({ x0: cx - 40, y0: cy - 20, x1: cx - 40, y1: cy - 10, color: '#10b981', size: 6 });
+    drawRemoteWhiteboardStroke({ x0: cx + 40, y0: cy - 20, x1: cx + 40, y1: cy - 10, color: '#10b981', size: 6 });
+    drawRemoteWhiteboardStroke({ x0: cx - 40, y0: cy + 20, x1: cx + 40, y1: cy + 20, color: '#f43f5e', size: 6 });
   }, 2200);
 
-  showToast('Simulated peer Priya Patel joined the call!');
+  showToast('Simulated peer Ananya Patra joined the call!');
 }
 
 // Participants UI
@@ -956,7 +957,7 @@ function setupEventListeners() {
   });
 
   els.fillDemoLoginBtn.addEventListener('click', () => {
-    els.loginEmail.value = 'intern@codealpha.com';
+    els.loginEmail.value = 'aniket@codealpha.com';
     els.loginPassword.value = 'password123';
   });
 
@@ -985,3 +986,4 @@ function setupEventListeners() {
     }
   });
 }
+
