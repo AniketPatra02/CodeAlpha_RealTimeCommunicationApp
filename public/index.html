@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseMeet | Real-Time Video Conferencing & Collaboration</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Screen 1: Lobby / Join Landing -->
+  <div class="lobby-view" id="lobbyView">
+    <!-- Navbar -->
+    <header class="lobby-nav">
+      <div class="brand-box">
+        <span class="brand-icon">📹</span>
+        <span class="brand-title">Pulse<span>Meet</span></span>
+      </div>
+
+      <div class="lobby-nav-right">
+        <div class="encryption-badge" title="WebRTC Native DTLS-SRTP 128-bit Encryption Active">
+          <span>🔒</span> End-to-End Encrypted
+        </div>
+        <div class="user-chip" id="lobbyUserChip">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" id="lobbyUserAvatar" class="avatar-xs">
+          <span id="lobbyUserName">Aarav Sharma</span>
+        </div>
+        <button class="btn btn-sm btn-outline" id="lobbyAuthBtn">Sign In</button>
+      </div>
+    </header>
+
+    <!-- Main Lobby Container -->
+    <main class="lobby-content">
+      <!-- Left Column: Actions -->
+      <div class="lobby-action-col">
+        <span class="badge-pill">🚀 CodeAlpha Internship Task 4</span>
+        <h1>Secure Video Conferencing & Team Collaboration</h1>
+        <p class="lobby-sub">High-definition WebRTC video calling, real-time screen sharing, in-call file exchange, and synchronized interactive whiteboards.</p>
+
+        <div class="lobby-join-box">
+          <button class="btn btn-primary btn-lg" id="createInstantMeetBtn">
+            <span>📹</span> <span>New Meeting</span>
+          </button>
+
+          <div class="join-input-group">
+            <input type="text" id="roomCodeInput" placeholder="Enter meeting code or link...">
+            <button class="btn btn-dark" id="joinMeetBtn">Join</button>
+          </div>
+        </div>
+
+        <div class="quick-demo-rooms">
+          <span>Quick Join Demo Rooms:</span>
+          <button class="demo-room-link" data-room="codealpha-sprint">#codealpha-sprint</button>
+          <button class="demo-room-link" data-room="demo-room-88">#demo-room-88</button>
+        </div>
+      </div>
+
+      <!-- Right Column: Camera Self-Test Preview -->
+      <div class="lobby-preview-col">
+        <div class="preview-camera-card">
+          <div class="preview-video-container">
+            <video id="lobbyPreviewVideo" autoplay playsinline muted></video>
+            <div class="camera-off-placeholder" id="lobbyCamPlaceholder" style="display: none;">
+              <span class="cam-icon">👤</span>
+              <p>Camera is turned off</p>
+            </div>
+            <div class="preview-audio-meter" id="previewAudioMeter">
+              <div class="meter-bar" id="meterBar"></div>
+            </div>
+          </div>
+
+          <div class="preview-controls">
+            <button class="control-btn" id="lobbyMicToggle" title="Toggle Microphone">
+              <span class="icon">🎙️</span>
+            </button>
+            <button class="control-btn" id="lobbyCamToggle" title="Toggle Camera">
+              <span class="icon">📷</span>
+            </button>
+            <div class="preview-user-input">
+              <input type="text" id="displayNameInput" placeholder="Enter your display name" value="Aarav Sharma">
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Screen 2: Active Meeting Room View -->
+  <div class="meeting-view" id="meetingView" style="display: none;">
+
+    <!-- Top Meeting Bar -->
+    <header class="meeting-header">
+      <div class="meeting-info-left">
+        <h2 id="roomTitleHeader">Collaborative Video Meeting</h2>
+        <div class="meeting-code-pill">
+          <span>Code:</span>
+          <strong id="activeRoomCode">meet-000-000</strong>
+          <button class="copy-btn" id="copyRoomCodeBtn" title="Copy meeting link">📋</button>
+        </div>
+        <div class="security-chip">
+          <span>🔒</span> DTLS-SRTP 128-bit
+        </div>
+      </div>
+
+      <div class="meeting-info-right">
+        <div class="meeting-timer" id="meetingTimer">00:00</div>
+        <!-- Solo Evaluator Test Helper -->
+        <button class="btn btn-sm btn-outline-white" id="simulatePeerBtn" title="Adds simulated peer for solo test runs">
+          🤖 + Demo Peer
+        </button>
+      </div>
+    </header>
+
+    <!-- Center Stage -->
+    <div class="meeting-stage-container">
+
+      <!-- Main Video Grid -->
+      <div class="video-grid" id="videoGrid">
+        <!-- Local Peer Video Card -->
+        <div class="video-tile local-tile" id="localVideoTile">
+          <video id="localVideo" autoplay playsinline muted></video>
+          <div class="tile-cam-off" id="localCamOffOverlay" style="display: none;">
+            <div class="avatar-large" id="localAvatarLetter">A</div>
+          </div>
+          <div class="tile-label">
+            <span id="localPeerNameLabel">You (Aarav Sharma)</span>
+            <span class="tile-mic-status" id="localMicStatus">🎙️</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Synchronized Whiteboard Modal / Canvas View -->
+      <div class="whiteboard-wrapper" id="whiteboardWrapper" style="display: none;">
+        <div class="whiteboard-header">
+          <div class="wb-title">
+            <span>🎨</span> Interactive Whiteboard (Live Sync)
+          </div>
+          <div class="wb-tools">
+            <button class="tool-btn active" id="toolPen" title="Pen">✏️</button>
+            <button class="tool-btn" id="toolEraser" title="Eraser">🧹</button>
+
+            <!-- Color Palette -->
+            <div class="color-palette">
+              <span class="color-dot active" style="background: #0f172a;" data-color="#0f172a"></span>
+              <span class="color-dot" style="background: #2563eb;" data-color="#2563eb"></span>
+              <span class="color-dot" style="background: #10b981;" data-color="#10b981"></span>
+              <span class="color-dot" style="background: #ef4444;" data-color="#ef4444"></span>
+              <span class="color-dot" style="background: #f59e0b;" data-color="#f59e0b"></span>
+            </div>
+
+            <label class="size-label">
+              <span>Size:</span>
+              <input type="range" id="brushSize" min="2" max="24" value="4">
+            </label>
+
+            <button class="btn btn-sm btn-outline-dark" id="clearBoardBtn">Clear</button>
+            <button class="btn btn-sm btn-dark" id="closeWhiteboardBtn">✕ Close</button>
+          </div>
+        </div>
+        <div class="whiteboard-canvas-box">
+          <canvas id="whiteboardCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Side Drawer (Chat / Files / People) -->
+      <aside class="sidebar-drawer" id="sidebarDrawer" style="display: none;">
+        <div class="drawer-tabs">
+          <button class="drawer-tab active" id="tabChat">Chat</button>
+          <button class="drawer-tab" id="tabFiles">Files</button>
+          <button class="drawer-tab" id="tabParticipants">People (<span id="participantCount">1</span>)</button>
+          <button class="close-drawer-icon" id="closeDrawerBtn">✕</button>
+        </div>
+
+        <!-- Tab 1: Chat -->
+        <div class="drawer-body" id="chatPanel">
+          <div class="chat-messages-container" id="chatMessages">
+            <div class="chat-system-msg">Meeting started. Messages are end-to-end synchronized.</div>
+          </div>
+          <form id="chatForm" class="chat-input-bar">
+            <input type="text" id="chatInput" placeholder="Send a message to everyone..." autocomplete="off">
+            <button type="submit" class="btn btn-primary btn-sm">Send</button>
+          </form>
+        </div>
+
+        <!-- Tab 2: File Sharing -->
+        <div class="drawer-body" id="filesPanel" style="display: none;">
+          <div class="file-upload-box">
+            <input type="file" id="fileShareInput" style="display: none;">
+            <button class="btn btn-outline btn-block" id="triggerFileUploadBtn">
+              📁 Share a File with Room
+            </button>
+            <span class="file-tip">Supports images, PDFs, code files up to 10MB</span>
+          </div>
+          <div class="shared-files-list" id="sharedFilesList">
+            <p class="empty-tip">No files shared yet in this session.</p>
+          </div>
+        </div>
+
+        <!-- Tab 3: Participants List -->
+        <div class="drawer-body" id="participantsPanel" style="display: none;">
+          <div class="participants-list" id="participantsList">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Bottom Floating Meeting Controls Bar -->
+    <footer class="meeting-controls-bar">
+      <div class="controls-group">
+        <!-- Mic Toggle -->
+        <button class="meet-btn" id="meetMicToggle" title="Toggle Mic (Mute/Unmute)">
+          <span class="btn-icon" id="meetMicIcon">🎙️</span>
+          <span class="btn-label">Mic</span>
+        </button>
+
+        <!-- Camera Toggle -->
+        <button class="meet-btn" id="meetCamToggle" title="Toggle Camera (On/Off)">
+          <span class="btn-icon" id="meetCamIcon">📹</span>
+          <span class="btn-label">Camera</span>
+        </button>
+
+        <!-- Screen Share -->
+        <button class="meet-btn" id="screenShareToggle" title="Share Screen">
+          <span class="btn-icon">🖥️</span>
+          <span class="btn-label" id="screenShareLabel">Share</span>
+        </button>
+
+        <!-- Whiteboard -->
+        <button class="meet-btn" id="whiteboardToggleBtn" title="Interactive Whiteboard">
+          <span class="btn-icon">🎨</span>
+          <span class="btn-label">Board</span>
+        </button>
+
+        <!-- Chat / Drawer -->
+        <button class="meet-btn" id="drawerToggleBtn" title="Chat & Collaboration">
+          <span class="btn-icon">💬</span>
+          <span class="btn-label">Chat</span>
+          <span class="unread-dot" id="chatUnreadDot" style="display: none;"></span>
+        </button>
+
+        <!-- End Call -->
+        <button class="meet-btn btn-leave" id="leaveCallBtn" title="Leave Meeting">
+          <span class="btn-icon">🛑</span>
+          <span class="btn-label">Leave</span>
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Auth Modal -->
+  <div class="modal-overlay" id="authModalOverlay">
+    <div class="modal auth-modal">
+      <button class="modal-close-btn" id="closeAuthModalBtn">✕</button>
+      <h3>Sign In to PulseMeet</h3>
+      <p class="modal-sub">Log in with your CodeAlpha account or continue as guest.</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="loginEmail" required placeholder="intern@codealpha.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        <div class="demo-box">
+          <span>Test Credentials?</span>
+          <button type="button" class="btn-text" id="fillDemoLoginBtn">Fill Demo Credentials</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

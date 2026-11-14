@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "id": "usr_aarav",
+      "name": "Aarav Sharma",
+      "email": "intern@codealpha.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": "usr_priya",
+      "name": "Priya Patel",
+      "email": "priya@example.com",
+      "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "codealpha-sprint",
+      "title": "CodeAlpha Daily Standup & Code Review",
+      "hostId": "usr_aarav",
+      "createdAt": "2026-11-14T09:00:00.000Z",
+      "encryption": "DTLS-SRTP AES-128"
+    },
+    {
+      "id": "demo-room-88",
+      "title": "Architecture & Whiteboard Session",
+      "hostId": "usr_priya",
+      "createdAt": "2026-11-14T11:30:00.000Z",
+      "encryption": "DTLS-SRTP AES-128"
+    }
+  ]
+}
